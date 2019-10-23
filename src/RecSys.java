@@ -219,7 +219,7 @@ public class RecSys {
         Dataset.saveModelData(model.phiZU, "phiZU");
     }
 
-    public Model readModel() {
+    private Model readModel() {
         Model model = new Model();
         model.phiGZ = Dataset.readModelData("phiGZ");
         model.phiZR = Dataset.readModelData("phiZR");
