@@ -1,14 +1,25 @@
-import java.io.*;
-import java.sql.Time;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class Dataset {
     public static int U;
-    //	public static int T;
+    // public static int T;
     public static int W;
     public static int E;
     public static int H;
-
 
     static int countNum(String file) {
         int num = 0;
@@ -71,7 +82,6 @@ public class Dataset {
         }
     }
 
-
     public static int[][] loadCorpus(String fileName) {
         Map<Integer, List<Integer>> data = new HashMap<Integer, List<Integer>>();
         Set<Integer> eset = new HashSet<Integer>();
@@ -130,7 +140,7 @@ public class Dataset {
                 }
                 data.add(sample);
             }
-            return data.toArray(new int[][]{});
+            return data.toArray(new int[][] {});
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -255,7 +265,7 @@ public class Dataset {
             }
             reader.close();
             W = count + 1;
-            return data.toArray(new int[][]{});
+            return data.toArray(new int[][] {});
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -342,7 +352,7 @@ public class Dataset {
                 data.add(sample);
             }
             reader.close();
-            return data.toArray(new double[][]{});
+            return data.toArray(new double[][] {});
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -368,7 +378,8 @@ public class Dataset {
             writer.write("location_id,longitude,latitude\n");
             while ((line = reader.readLine()) != null) {
                 String[] tmp = line.split(",");
-                if (tmp.length <= 3 || !"Chicago".equals(tmp[3])) continue;
+                if (tmp.length <= 3 || !"Chicago".equals(tmp[3]))
+                    continue;
                 String s = tmp[0] + "," + tmp[2] + "," + tmp[1] + "\n";
                 writer.write(s);
             }
@@ -401,7 +412,8 @@ public class Dataset {
             writer = new BufferedWriter(new FileWriter(outputFile));
             while ((line = reader.readLine()) != null) {
                 String[] tmp = line.split(",");
-                if ("0.0".equals(tmp[1]) || "0.0".equals(tmp[2])) continue;
+                if ("0.0".equals(tmp[1]) || "0.0".equals(tmp[2]))
+                    continue;
                 writer.write(line + "\n");
             }
         } catch (IOException e) {
@@ -442,7 +454,8 @@ public class Dataset {
             writer.write(reader.readLine() + "\n");
             while ((line = reader.readLine()) != null) {
                 String[] tmp = line.split(",");
-                if (lids.contains(tmp[2])) writer.write(line + "\n");
+                if (lids.contains(tmp[2]))
+                    writer.write(line + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -493,7 +506,8 @@ public class Dataset {
             map.values().toArray(dumps);
             Set<String> remove = new HashSet<>();
             for (Dump item : dumps) {
-                if (item.count < 5) remove.add(item.gid);
+                if (item.count < 5)
+                    remove.add(item.gid);
             }
 
             System.out.println(remove.size());
@@ -504,7 +518,8 @@ public class Dataset {
             reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] tmp = line.split(",");
-                if (remove.contains(tmp[3])) continue;
+                if (remove.contains(tmp[3]))
+                    continue;
                 writer.write(line + "\n");
             }
         } catch (IOException e) {
@@ -994,6 +1009,36 @@ public class Dataset {
         }
     }
 
+    static double[][] readModelData(String fileName) {
+        File file = new File("dataset\\meetup\\model\\" + fileName);
+        List<double[]> res = new ArrayList<>();
+        BufferedReader reader = null;
+        String line = "";
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            while ((line = reader.readLine()) != null) {
+                String[] tmp = line.split("\t");
+                double[] items = new double[tmp.length];
+                for (int i = 0; i < tmp.length; i++) {
+                    items[i] = Double.parseDouble(tmp[i]);
+                }
+                res.add(items);
+            }
+            return res.toArray(new double[][] {});
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
     static void saveResults(int[][] arrs) {
         File file = new File("dataset\\meetup\\reclist.txt");
         BufferedWriter writer = null;
@@ -1049,8 +1094,9 @@ public class Dataset {
     }
 
     private static Calendar calendar = Calendar.getInstance();
-    private static String[] months = new String[]{"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"};
-    private static String[] weeks = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+    private static String[] months = new String[] { "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
+            "十二月" };
+    private static String[] weeks = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" };
 
     private static int getMonth(long time) {
         calendar.setTimeInMillis(time);
@@ -1065,57 +1111,42 @@ public class Dataset {
     public static void main(String[] args) {
         setFinalDataset();
 
-        /*int n = 10005;
-        ArrayList<Long>[] locTimes = new ArrayList[n];
-        setLocTimes(locTimes);
-        int week, max_week, week_num50 = 0, week_num80 = 0;
-        double weekRate;
-        for (int i = 0; i < n; i++) {
-            int[] tmp_week = new int[7];
-            max_week = 0;
-            for (Long time : locTimes[i]) {
-                week = getWeek(time);
-                tmp_week[week]++;
-                max_week = Math.max(max_week, tmp_week[week]);
+        /*
+         * int n = 10005; ArrayList<Long>[] locTimes = new ArrayList[n];
+         * setLocTimes(locTimes); int week, max_week, week_num50 = 0, week_num80 = 0;
+         * double weekRate; for (int i = 0; i < n; i++) { int[] tmp_week = new int[7];
+         * max_week = 0; for (Long time : locTimes[i]) { week = getWeek(time);
+         * tmp_week[week]++; max_week = Math.max(max_week, tmp_week[week]);
+         * 
+         * } weekRate = 1.0 * max_week / locTimes[i].size(); if (weekRate >= 0.8)
+         * week_num80++; else if (weekRate >= 0.5) week_num50++; }
+         * System.out.println(1.0 * week_num80 / n); System.out.println(1.0 * week_num50
+         * / n);
+         */
 
-            }
-            weekRate = 1.0 * max_week / locTimes[i].size();
-            if (weekRate >= 0.8) week_num80++;
-            else if (weekRate >= 0.5) week_num50++;
-        }
-        System.out.println(1.0 * week_num80 / n);
-        System.out.println(1.0 * week_num50 / n);*/
+        /*
+         * System.out.println("-----------Month-----------"); for (int i = 0; i < 100;
+         * i++) { for (int j = 0; j < locTimes[i].size() - 1; j++) {
+         * System.out.print(getMonth(locTimes[i].get(j)) + " "); }
+         * System.out.println(getMonth(locTimes[i].get(locTimes[i].size() - 1))); }
+         * System.out.println("-----------Month-----------");
+         */
+        /*
+         * System.out.println("-----------Week-----------"); for (int i = 0; i < 100;
+         * i++) { for (int j = 0; j < locTimes[i].size() - 1; j++) {
+         * System.out.print(getWeek(locTimes[i].get(j)) + " "); }
+         * System.out.println(getWeek(locTimes[i].get(locTimes[i].size() - 1))); }
+         * System.out.println("-----------Week-----------");
+         */
 
-/*
-        System.out.println("-----------Month-----------");
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < locTimes[i].size() - 1; j++) {
-                System.out.print(getMonth(locTimes[i].get(j)) + " ");
-            }
-            System.out.println(getMonth(locTimes[i].get(locTimes[i].size() - 1)));
-        }
-        System.out.println("-----------Month-----------");
-*/
-/*
-        System.out.println("-----------Week-----------");
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < locTimes[i].size() - 1; j++) {
-                System.out.print(getWeek(locTimes[i].get(j)) + " ");
-            }
-            System.out.println(getWeek(locTimes[i].get(locTimes[i].size() - 1)));
-        }
-        System.out.println("-----------Week-----------");
-*/
+        // System.out.println(locations[6]);
+        // for(int i=0;i<10;i++){
+        // for(int j=0;j<locations[43].length;j++)
+        // System.out.print(locations[43][j]+" ");
+        // System.out.println();
+        // }
 
-
-//		System.out.println(locations[6]);
-//		for(int i=0;i<10;i++){
-//			for(int j=0;j<locations[43].length;j++)
-//				System.out.print(locations[43][j]+" ");
-//			System.out.println();
-//		}
-
-//		for(int i : train.get(2))
-//			System.out.println(i);
+        // for(int i : train.get(2))
+        // System.out.println(i);
     }
 }
