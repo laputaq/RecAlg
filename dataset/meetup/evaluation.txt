@@ -1,0 +1,7 @@
+topn=10
+hit=0
+pre=200
+rec=4194
+truth=0
+Precision=0.0000%
+Recall=0.0000%

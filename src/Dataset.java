@@ -298,7 +298,7 @@ public class Dataset {
     }
 
     static ArrayList<Integer>[] readTrainOrTestOrGroup(String fileName) {
-        int group_num = 1134;
+        int group_num = 20;
         ArrayList<Integer>[] groupEvents = new ArrayList[group_num];
         File file = new File(fileName);
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

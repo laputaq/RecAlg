@@ -294,10 +294,10 @@ public class RecSys {
         // long startTime = System.currentTimeMillis();
         int Z = 50, R = 50, iterNum = 20, topn = 10; // K is number of topics, R is number of regions
         RecSys recSys = new RecSys(Z, R);
-        /*recSys.initialize();
+        recSys.initialize();
         recSys.train(iterNum);
-        Model model = recSys.getModel();*/
-        Model model = recSys.readModel();
+        Model model = recSys.getModel();
+        //Model model = recSys.readModel();
         int[][] reclist = recSys.recommend(model, topn);
         Evaluation.evaluate(recSys.testset, reclist, "Recall", topn); // evaluate the precision and recall of
                                                                       // recommendations
