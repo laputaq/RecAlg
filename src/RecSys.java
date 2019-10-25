@@ -101,7 +101,7 @@ public class RecSys {
         }
     }
 
-    public int draw(double[] a) {
+    private int draw(double[] a) {
         double r = Math.random();
         for (int i = 0; i < a.length; i++) {
             r = r - a[i];

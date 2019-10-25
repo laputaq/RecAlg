@@ -4,15 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Dataset {
     public static int U;
@@ -140,7 +132,7 @@ public class Dataset {
                 }
                 data.add(sample);
             }
-            return data.toArray(new int[][] {});
+            return data.toArray(new int[][]{});
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -265,7 +257,7 @@ public class Dataset {
             }
             reader.close();
             W = count + 1;
-            return data.toArray(new int[][] {});
+            return data.toArray(new int[][]{});
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -352,7 +344,7 @@ public class Dataset {
                 data.add(sample);
             }
             reader.close();
-            return data.toArray(new double[][] {});
+            return data.toArray(new double[][]{});
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -367,8 +359,8 @@ public class Dataset {
     }
 
     public static void getChicagoData() {
-        File inputFile = new File("dataset\\meetup\\locations.csv");
-        File outputFile = new File("dataset\\meetup\\locations_chicago.csv");
+        File inputFile = new File("dataset/meetup/locations.csv");
+        File outputFile = new File("dataset/meetup/locations_chicago.csv");
         BufferedReader reader = null;
         BufferedWriter writer = null;
         String line = null;
@@ -402,8 +394,8 @@ public class Dataset {
     }
 
     public static void setChicagoData() {
-        File inputFile = new File("dataset\\meetup\\locations_chicago.csv");
-        File outputFile = new File("dataset\\meetup\\locations.csv");
+        File inputFile = new File("dataset/meetup/locations_chicago.csv");
+        File outputFile = new File("dataset/meetup/locations.csv");
         BufferedReader reader = null;
         BufferedWriter writer = null;
         String line = null;
@@ -435,9 +427,9 @@ public class Dataset {
     }
 
     public static void setData() {
-        File file = new File("dataset\\meetup\\locations.csv");
-        File inputFile = new File("dataset\\meetup\\events.csv");
-        File outputFile = new File("dataset\\meetup\\events_chicago.csv");
+        File file = new File("dataset/meetup/locations.csv");
+        File inputFile = new File("dataset/meetup/events.csv");
+        File outputFile = new File("dataset/meetup/events_chicago.csv");
         BufferedReader reader = null;
         BufferedWriter writer = null;
         Set<String> lids = new HashSet<>();
@@ -485,8 +477,8 @@ public class Dataset {
     }
 
     public static void cleanData() {
-        File inputFile = new File("dataset\\meetup\\events_chicago.csv");
-        File outputFile = new File("dataset\\meetup\\events.csv");
+        File inputFile = new File("dataset/meetup/events_chicago.csv");
+        File outputFile = new File("dataset/meetup/events.csv");
         Map<String, Dump> map = new HashMap<>();
         BufferedReader reader = null;
         BufferedWriter writer = null;
@@ -541,12 +533,12 @@ public class Dataset {
     }
 
     public static void serialData() {
-        File inputFile = new File("dataset\\meetup\\events.csv");
-        File outputFile = new File("dataset\\meetup\\events_ind.csv");
-        File eventFile = new File("dataset\\meetup\\event.csv");
-        File gmapFile = new File("dataset\\meetup\\g_map.csv");
-        File emapFile = new File("dataset\\meetup\\e_map.csv");
-        File lmapFile = new File("dataset\\meetup\\l_map.csv");
+        File inputFile = new File("dataset/meetup/events.csv");
+        File outputFile = new File("dataset/meetup/events_ind.csv");
+        File eventFile = new File("dataset/meetup/event.csv");
+        File gmapFile = new File("dataset/meetup/g_map.csv");
+        File emapFile = new File("dataset/meetup/e_map.csv");
+        File lmapFile = new File("dataset/meetup/l_map.csv");
         BufferedReader reader = null;
         BufferedWriter writer = null;
         BufferedWriter ewriter = null;
@@ -644,9 +636,9 @@ public class Dataset {
         }
         System.out.printf("test:%d, len: %d, length: %d\n", testRows.size(), len, length);
 
-        File inputFile = new File("dataset\\meetup\\event.csv");
-        File trainFile = new File("dataset\\meetup\\train.csv");
-        File testFile = new File("dataset\\meetup\\test.csv");
+        File inputFile = new File("dataset/meetup/event.csv");
+        File trainFile = new File("dataset/meetup/train.csv");
+        File testFile = new File("dataset/meetup/test.csv");
         BufferedReader reader = null;
         BufferedWriter train = null;
         BufferedWriter test = null;
@@ -694,9 +686,9 @@ public class Dataset {
     }
 
     public static void cleanLocations() {
-        File inputFile = new File("dataset\\meetup\\events.csv");
-        File groupFile = new File("dataset\\meetup\\group.csv");
-        File groupsFile = new File("dataset\\meetup\\groups.csv");
+        File inputFile = new File("dataset/meetup/events.csv");
+        File groupFile = new File("dataset/meetup/group.csv");
+        File groupsFile = new File("dataset/meetup/groups.csv");
         BufferedReader reader = null;
         BufferedReader group = null;
         BufferedWriter groups = null;
@@ -748,9 +740,9 @@ public class Dataset {
     }
 
     public static void replaceData() {
-        File lmapFile = new File("dataset\\meetup\\l_map.csv");
-        File locationsFile = new File("dataset\\meetup\\locations.csv");
-        File locationFile = new File("dataset\\meetup\\location.csv");
+        File lmapFile = new File("dataset/meetup/l_map.csv");
+        File locationsFile = new File("dataset/meetup/locations.csv");
+        File locationFile = new File("dataset/meetup/location.csv");
         BufferedReader lmap = null;
         BufferedReader locations = null;
         BufferedWriter location = null;
@@ -802,9 +794,9 @@ public class Dataset {
     }
 
     public static void simplifyEvent() {
-        File lmapFile = new File("dataset\\meetup\\l_map.csv");
-        File locationsFile = new File("dataset\\meetup\\locations.csv");
-        File locationFile = new File("dataset\\meetup\\location.csv");
+        File lmapFile = new File("dataset/meetup/l_map.csv");
+        File locationsFile = new File("dataset/meetup/locations.csv");
+        File locationFile = new File("dataset/meetup/location.csv");
         BufferedReader lmap = null;
         BufferedReader locations = null;
         BufferedWriter location = null;
@@ -855,8 +847,8 @@ public class Dataset {
         }
     }
 
-    private static void setLocTimes(ArrayList<Long>[] locTimes) {
-        File inputFile = new File("dataset\\meetup\\events.csv");
+    private static void setLocTimes(ArrayList<Integer>[] locTimes) {
+        File inputFile = new File("dataset/meetup/train.csv");
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(inputFile));
@@ -866,7 +858,7 @@ public class Dataset {
             while ((line = reader.readLine()) != null) {
                 String[] tmp = line.split(",");
                 int l_id = Integer.parseInt(tmp[1]);
-                long time = Long.parseLong(tmp[2]);
+                int time = Integer.parseInt(tmp[2]);
                 if (locTimes[l_id] == null) {
                     locTimes[l_id] = new ArrayList<>();
                 }
@@ -885,86 +877,158 @@ public class Dataset {
         }
     }
 
-    private static void setFinalDataset() {
-        int group_num = 1134, events_num = 98287;
-        Long[] eventTimes = new Long[events_num];
-        ArrayList<Integer>[] groupEvents = new ArrayList[group_num];
+    public static void main(String[] args) {
+        doFinalDataset2();
+    }
 
-        File inputFile = new File("dataset\\meetup\\group_events.csv");
-        File eventFile = new File("dataset\\meetup\\events.csv");
-        File trainFile = new File("dataset\\meetup\\train.csv");
-        File testFile = new File("dataset\\meetup\\test.csv");
-        BufferedReader reader = null;
-        BufferedReader ereader = null;
-        BufferedWriter train = null;
-        BufferedWriter test = null;
+    private static void doFinalDataset2() {
+        Map<Integer, Integer> map = new HashMap<>();
+        File meventFile = new File("dataset/meetup/groups.csv");
+        File memapFile = new File("dataset/meetup/u_map.csv");
+        File meventFile2 = new File("dataset/meetup/groups2.csv");
+        File memapFile2 = new File("dataset/meetup/u_map2.csv");
+        BufferedReader mevent = null;
+        BufferedReader memap = null;
+        BufferedWriter mevent2 = null;
+        BufferedWriter memap2 = null;
         String line;
         try {
-            reader = new BufferedReader(new FileReader(inputFile));
-            ereader = new BufferedReader(new FileReader(eventFile));
-            train = new BufferedWriter(new FileWriter(trainFile));
-            test = new BufferedWriter(new FileWriter(testFile));
+            mevent = new BufferedReader(new FileReader(meventFile));
+            memap = new BufferedReader(new FileReader(memapFile));
+            mevent2 = new BufferedWriter(new FileWriter(meventFile2));
+            memap2 = new BufferedWriter(new FileWriter(memapFile2));
 
-            reader.readLine();
-            while ((line = reader.readLine()) != null) {
+            int ind = 0;
+            line = mevent.readLine();
+            mevent2.write(line + "\n");
+            while ((line = mevent.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int u_id = Integer.parseInt(tmp[1]);
+                if (!map.containsKey(u_id)) {
+                    map.put(u_id, ind++);
+                }
+                mevent2.write(tmp[0] + "," + map.get(u_id) + "\n");
+            }
+
+            Integer[] replace = new Integer[map.size()];
+            line = memap.readLine();
+            memap2.write(line + "\n");
+            while ((line = memap.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int u_id = Integer.parseInt(tmp[0]);
+                if (!map.containsKey(u_id)) continue;
+                replace[map.get(u_id)] = Integer.parseInt(tmp[1]);
+            }
+            for (int i = 0; i < replace.length; i++) {
+                memap2.write(i + "," + replace[i] + "\n");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (mevent != null) {
+                try {
+                    mevent.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (memap != null) {
+                try {
+                    memap.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mevent2 != null) {
+                try {
+                    mevent2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (memap2 != null) {
+                try {
+                    memap2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private static void doFinalDataset() {
+        Map<Integer, Integer> map = new HashMap<>();
+        File trainFile = new File("dataset/meetup/train_min2.csv");
+        File testFile = new File("dataset/meetup/test_min2.csv");
+        File trainFile2 = new File("dataset/meetup/train.csv");
+        File testFile2 = new File("dataset/meetup/test.csv");
+
+        File meventFile = new File("dataset/meetup/groups_min.csv");
+        File memapFile = new File("dataset/meetup/g_map_min.csv");
+        File meventFile2 = new File("dataset/meetup/groups.csv");
+        File memapFile2 = new File("dataset/meetup/g_map.csv");
+        BufferedReader train = null;
+        BufferedReader test = null;
+        BufferedWriter train2 = null;
+        BufferedWriter test2 = null;
+        BufferedReader mevent = null;
+        BufferedReader memap = null;
+        BufferedWriter mevent2 = null;
+        BufferedWriter memap2 = null;
+        String line;
+        try {
+            train = new BufferedReader(new FileReader(trainFile));
+            test = new BufferedReader(new FileReader(testFile));
+            train2 = new BufferedWriter(new FileWriter(trainFile2));
+            test2 = new BufferedWriter(new FileWriter(testFile2));
+            mevent = new BufferedReader(new FileReader(meventFile));
+            memap = new BufferedReader(new FileReader(memapFile));
+            mevent2 = new BufferedWriter(new FileWriter(meventFile2));
+            memap2 = new BufferedWriter(new FileWriter(memapFile2));
+
+            int ind = 0, id;
+            line = train.readLine();
+            train2.write(line + "\n");
+            while ((line = train.readLine()) != null) {
                 String[] tmp = line.split(",");
                 int g_id = Integer.parseInt(tmp[0]);
-                int e_id = Integer.parseInt(tmp[1]);
-                if (g_id >= group_num) {
-                    System.out.println("group number is wrong.");
-                    return;
+                if (!map.containsKey(g_id)) {
+                    map.put(g_id, ind++);
                 }
-                if (groupEvents[g_id] == null) {
-                    groupEvents[g_id] = new ArrayList<>();
-                }
-                groupEvents[g_id].add(e_id);
+                id = map.get(g_id);
+                train2.write(id + "," + tmp[1] + "\n");
             }
 
-            ereader.readLine();
-            while ((line = ereader.readLine()) != null) {
+            line = test.readLine();
+            test2.write(line + "\n");
+            while ((line = test.readLine()) != null) {
                 String[] tmp = line.split(",");
-                int e_id = Integer.parseInt(tmp[0]);
-                long time = Long.parseLong(tmp[2]);
-                if (e_id >= events_num) {
-                    System.out.println("events number is wrong.");
-                    return;
-                }
-                eventTimes[e_id] = time;
+                int g_id = Integer.parseInt(tmp[0]);
+                id = map.get(g_id);
+                test2.write(id + "," + tmp[1] + "\n");
             }
 
-            double rate = 0.8;
-            train.write("g_id,e_id\n");
-            test.write("g_id,e_id\n");
-            for (int k = 0; k < groupEvents.length; k++) {
-                List<Integer> list = groupEvents[k];
-                list.sort(Comparator.comparingLong((Integer o) -> eventTimes[o]));
-                int j = (int) (rate * list.size());
-                for (int i = 0; i < list.size(); i++) {
-                    line = k + "," + list.get(i) + "\n";
-                    if (i < j) {
-                        train.write(line);
-                    } else {
-                        test.write(line);
-                    }
-                }
+            line = mevent.readLine();
+            mevent2.write(line + "\n");
+            while ((line = mevent.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int g_id = Integer.parseInt(tmp[0]);
+                id = map.get(g_id);
+                mevent2.write(id + "," + tmp[1] + "\n");
+            }
+            line = memap.readLine();
+            memap2.write(line + "\n");
+            while ((line = memap.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int g_id = Integer.parseInt(tmp[0]);
+                id = map.get(g_id);
+                memap2.write(id + "," + tmp[1] + "\n");
+                ind++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-            if (ereader != null) {
-                try {
-                    ereader.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
             if (train != null) {
                 try {
                     train.close();
@@ -979,11 +1043,343 @@ public class Dataset {
                     e1.printStackTrace();
                 }
             }
+            if (train2 != null) {
+                try {
+                    train2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (test2 != null) {
+                try {
+                    test2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mevent != null) {
+                try {
+                    mevent.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (memap != null) {
+                try {
+                    memap.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mevent2 != null) {
+                try {
+                    mevent2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (memap2 != null) {
+                try {
+                    memap2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+    private static void resetFinalDataset() {
+        Map<Integer, Integer> map = new HashMap<>();
+        File trainFile = new File("dataset/meetup/train_min.csv");
+        File testFile = new File("dataset/meetup/test_min.csv");
+        File trainFile2 = new File("dataset/meetup/train_min2.csv");
+        File testFile2 = new File("dataset/meetup/test_min2.csv");
+
+        File meventFile = new File("dataset/meetup/events_min.csv");
+        File memapFile = new File("dataset/meetup/e_map_min.csv");
+        File meventFile2 = new File("dataset/meetup/events_min2.csv");
+        File memapFile2 = new File("dataset/meetup/e_map_min2.csv");
+        BufferedReader train = null;
+        BufferedReader test = null;
+        BufferedWriter train2 = null;
+        BufferedWriter test2 = null;
+        BufferedReader mevent = null;
+        BufferedReader memap = null;
+        BufferedWriter mevent2 = null;
+        BufferedWriter memap2 = null;
+        String line;
+        try {
+            train = new BufferedReader(new FileReader(trainFile));
+            test = new BufferedReader(new FileReader(testFile));
+            train2 = new BufferedWriter(new FileWriter(trainFile2));
+            test2 = new BufferedWriter(new FileWriter(testFile2));
+            mevent = new BufferedReader(new FileReader(meventFile));
+            memap = new BufferedReader(new FileReader(memapFile));
+            mevent2 = new BufferedWriter(new FileWriter(meventFile2));
+            memap2 = new BufferedWriter(new FileWriter(memapFile2));
+
+            int ind = 0;
+            line = mevent.readLine();
+            mevent2.write(line + "\n");
+            while ((line = mevent.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[0]);
+                map.put(e_id, ind);
+                mevent2.write(ind + "," + tmp[1] + "," + tmp[2] + "\n");
+                ind++;
+            }
+            ind = 0;
+            line = memap.readLine();
+            memap2.write(line + "\n");
+            while ((line = memap.readLine()) != null) {
+                String[] tmp = line.split(",");
+                memap2.write(ind + "," + tmp[1] + "\n");
+                ind++;
+            }
+
+            line = train.readLine();
+            train2.write(line + "\n");
+            while ((line = train.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[1]);
+                train2.write(tmp[0] + "," + map.get(e_id) + "\n");
+            }
+
+            line = test.readLine();
+            test2.write(line + "\n");
+            while ((line = test.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[1]);
+                test2.write(tmp[0] + "," + map.get(e_id) + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (train != null) {
+                try {
+                    train.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (test != null) {
+                try {
+                    test.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (train2 != null) {
+                try {
+                    train2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (test2 != null) {
+                try {
+                    test2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mevent != null) {
+                try {
+                    mevent.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (memap != null) {
+                try {
+                    memap.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mevent2 != null) {
+                try {
+                    mevent2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (memap2 != null) {
+                try {
+                    memap2.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private static void clearFinalDataset() {
+        Set<Integer> set = new HashSet<>();
+        File trainFile = new File("dataset/meetup/train_min.csv");
+        File testFile = new File("dataset/meetup/test_min.csv");
+        File groupFile = new File("dataset/meetup/events.csv");
+        File mgroupFile = new File("dataset/meetup/events_min.csv");
+        File gmapFile = new File("dataset/meetup/e_map.csv");
+        File mgmapFile = new File("dataset/meetup/e_map_min.csv");
+        BufferedReader train = null;
+        BufferedReader test = null;
+        BufferedReader group = null;
+        BufferedReader gmap = null;
+        BufferedWriter mgroup = null;
+        BufferedWriter mgmap = null;
+        String line;
+        try {
+            train = new BufferedReader(new FileReader(trainFile));
+            test = new BufferedReader(new FileReader(testFile));
+            group = new BufferedReader(new FileReader(groupFile));
+            gmap = new BufferedReader(new FileReader(gmapFile));
+            mgroup = new BufferedWriter(new FileWriter(mgroupFile));
+            mgmap = new BufferedWriter(new FileWriter(mgmapFile));
+
+            train.readLine();
+            while ((line = train.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[1]);
+                set.add(e_id);
+            }
+            test.readLine();
+            while ((line = test.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[1]);
+                set.add(e_id);
+            }
+
+            line = group.readLine();
+            mgroup.write(line + "\n");
+            while ((line = group.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[0]);
+                if (!set.contains(e_id)) continue;
+                mgroup.write(line + "\n");
+            }
+
+            line = gmap.readLine();
+            mgmap.write(line + "\n");
+            while ((line = gmap.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[0]);
+                if (!set.contains(e_id)) continue;
+                mgmap.write(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (train != null) {
+                try {
+                    train.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (test != null) {
+                try {
+                    test.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (group != null) {
+                try {
+                    group.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mgroup != null) {
+                try {
+                    mgroup.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (gmap != null) {
+                try {
+                    gmap.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mgmap != null) {
+                try {
+                    mgmap.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private static void setFinalDataset() {
+        int group_num = 1134;
+        Integer[] indexs = new Integer[group_num];
+        ArrayList<Integer>[] groupEvents = new ArrayList[group_num];
+
+        File inputFile = new File("dataset/meetup/test.csv");
+        File outputFile = new File("dataset/meetup/test_min.csv");
+        BufferedReader reader = null;
+        BufferedWriter writer = null;
+        String line;
+        try {
+            reader = new BufferedReader(new FileReader(inputFile));
+            writer = new BufferedWriter(new FileWriter(outputFile));
+
+            line = reader.readLine();
+            writer.write(line + "\n");
+            while ((line = reader.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int g_id = Integer.parseInt(tmp[0]);
+                int e_id = Integer.parseInt(tmp[1]);
+                if (g_id >= group_num) {
+                    System.out.println("group number is wrong.");
+                    return;
+                }
+                if (groupEvents[g_id] == null) {
+                    groupEvents[g_id] = new ArrayList<>();
+                }
+                groupEvents[g_id].add(e_id);
+            }
+
+            for (int i = 0; i < group_num; i++) {
+                indexs[i] = i;
+            }
+            Arrays.sort(indexs, Comparator.comparingInt((Integer i) -> groupEvents[i].size()));
+            int ind = indexs.length - 2, g_num = 0;
+            while (g_num++ < 20) {
+                for (int e : groupEvents[indexs[ind]]) {
+                    writer.write(indexs[ind] + "," + e + "\n");
+                }
+                System.out.println(groupEvents[indexs[ind]].size());
+                ind--;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
         }
     }
 
     static void saveModelData(double[][] arrs, String fileName) {
-        File file = new File("dataset\\meetup\\model\\" + fileName);
+        File file = new File("dataset/meetup/model/" + fileName);
         BufferedWriter writer = null;
         StringBuilder sb;
         try {
@@ -1010,7 +1406,7 @@ public class Dataset {
     }
 
     static double[][] readModelData(String fileName) {
-        File file = new File("dataset\\meetup\\model\\" + fileName);
+        File file = new File("dataset/meetup/model/" + fileName);
         List<double[]> res = new ArrayList<>();
         BufferedReader reader = null;
         String line = "";
@@ -1024,7 +1420,7 @@ public class Dataset {
                 }
                 res.add(items);
             }
-            return res.toArray(new double[][] {});
+            return res.toArray(new double[][]{});
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -1040,7 +1436,7 @@ public class Dataset {
     }
 
     static void saveResults(int[][] arrs) {
-        File file = new File("dataset\\meetup\\reclist.txt");
+        File file = new File("dataset/meetup/reclist.txt");
         BufferedWriter writer = null;
         StringBuilder sb;
         try {
@@ -1066,8 +1462,92 @@ public class Dataset {
         }
     }
 
+    // 输出某一群组随时间的推移而导致的位置的变化
+    static void locationMigration() {
+        int group_num = 1134, event_num = 98287;
+        int[][] eventTimes = new int[event_num][2];
+        List<Integer>[] groupEvents = new ArrayList[group_num];
+
+        File eventFile = new File("dataset/meetup/events.csv");
+        File trainFile = new File("dataset/meetup/train.csv");
+        File testFile = new File("dataset/meetup/test.csv");
+        File locTimeFile = new File("dataset/meetup/loc_mig.csv");
+        BufferedReader reader = null;
+        BufferedReader train = null;
+        BufferedReader test = null;
+        BufferedWriter writer = null;
+        String line;
+        try {
+            reader = new BufferedReader(new FileReader(eventFile));
+            train = new BufferedReader(new FileReader(trainFile));
+            test = new BufferedReader(new FileReader(testFile));
+            writer = new BufferedWriter(new FileWriter(locTimeFile));
+
+            reader.readLine();
+            while ((line = reader.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[0]);
+                int l_id = Integer.parseInt(tmp[1]);
+                int time = Integer.parseInt(tmp[2]);
+                eventTimes[e_id] = new int[]{l_id, time};
+            }
+
+            train.readLine();
+            while ((line = train.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int g_id = Integer.parseInt(tmp[0]);
+                int e_id = Integer.parseInt(tmp[1]);
+                if (groupEvents[g_id] == null) {
+                    groupEvents[g_id] = new ArrayList<>();
+                }
+                groupEvents[g_id].add(e_id);
+            }
+
+            for (List<Integer> list : groupEvents) {
+                list.sort(Comparator.comparingInt((Integer o) -> eventTimes[o][1]));
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < list.size() - 1; i++) {
+                    sb.append(eventTimes[list.get(i)][0]).append("\t");
+                }
+                sb.append(eventTimes[list.get(list.size() - 1)][0]).append("\n");
+                writer.write(sb.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (train != null) {
+                try {
+                    train.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (test != null) {
+                try {
+                    test.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
     static void saveEvaluation(int topn, int hit, int truth, int recall, int precision) {
-        File file = new File("dataset\\meetup\\evaluation.txt");
+        File file = new File("dataset/meetup/evaluation.txt");
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(file));
@@ -1094,50 +1574,59 @@ public class Dataset {
     }
 
     private static Calendar calendar = Calendar.getInstance();
-    private static String[] months = new String[] { "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
-            "十二月" };
-    private static String[] weeks = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" };
+    private static String[] months = new String[]{"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
+            "十二月"};
+    private static String[] weeks = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
 
-    private static int getMonth(long time) {
-        calendar.setTimeInMillis(time);
+    private static int getMonth(int time) {
+        calendar.setTimeInMillis(1000L * time);
         return calendar.get(Calendar.MONTH);
     }
 
-    private static int getWeek(long time) {
-        calendar.setTimeInMillis(time);
+    private static int getWeek(int time) {
+        calendar.setTimeInMillis(1000L * time);
         return calendar.get(Calendar.DAY_OF_WEEK) - 1;
     }
 
-    public static void main(String[] args) {
-        setFinalDataset();
+    public static void main1(String[] args) {
+        int n = 10005;
+        ArrayList<Integer>[] locTimes = new ArrayList[n];
+        setLocTimes(locTimes);
+        int week, max_week, week_num50 = 0, week_num80 = 0;
+        double weekRate;
+        for (int i = 0; i < n; i++) {
+            int[] tmp_week = new int[7];
+            max_week = 0;
+            for (int time : locTimes[i]) {
+                week = getWeek(time);
+                tmp_week[week]++;
+                max_week = Math.max(max_week, tmp_week[week]);
 
-        /*
-         * int n = 10005; ArrayList<Long>[] locTimes = new ArrayList[n];
-         * setLocTimes(locTimes); int week, max_week, week_num50 = 0, week_num80 = 0;
-         * double weekRate; for (int i = 0; i < n; i++) { int[] tmp_week = new int[7];
-         * max_week = 0; for (Long time : locTimes[i]) { week = getWeek(time);
-         * tmp_week[week]++; max_week = Math.max(max_week, tmp_week[week]);
-         * 
-         * } weekRate = 1.0 * max_week / locTimes[i].size(); if (weekRate >= 0.8)
-         * week_num80++; else if (weekRate >= 0.5) week_num50++; }
-         * System.out.println(1.0 * week_num80 / n); System.out.println(1.0 * week_num50
-         * / n);
-         */
+            }
+            weekRate = 1.0 * max_week / locTimes[i].size();
+            if (weekRate >= 0.8)
+                week_num80++;
+            else if (weekRate >= 0.5) week_num50++;
+        }
+        System.out.println(1.0 * week_num80 / n);
+        System.out.println(1.0 * week_num50 / n);
 
-        /*
-         * System.out.println("-----------Month-----------"); for (int i = 0; i < 100;
-         * i++) { for (int j = 0; j < locTimes[i].size() - 1; j++) {
-         * System.out.print(getMonth(locTimes[i].get(j)) + " "); }
-         * System.out.println(getMonth(locTimes[i].get(locTimes[i].size() - 1))); }
-         * System.out.println("-----------Month-----------");
-         */
-        /*
-         * System.out.println("-----------Week-----------"); for (int i = 0; i < 100;
-         * i++) { for (int j = 0; j < locTimes[i].size() - 1; j++) {
-         * System.out.print(getWeek(locTimes[i].get(j)) + " "); }
-         * System.out.println(getWeek(locTimes[i].get(locTimes[i].size() - 1))); }
-         * System.out.println("-----------Week-----------");
-         */
+        System.out.println("-----------Month-----------");
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < locTimes[i].size() - 1; j++) {
+                System.out.print(getMonth(locTimes[i].get(j)) + " ");
+            }
+            System.out.println(getMonth(locTimes[i].get(locTimes[i].size() - 1)));
+        }
+        System.out.println("-----------Month-----------");
+        System.out.println("-----------Week-----------");
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < locTimes[i].size() - 1; j++) {
+                System.out.print(getWeek(locTimes[i].get(j)) + " ");
+            }
+            System.out.println(getWeek(locTimes[i].get(locTimes[i].size() - 1)));
+        }
+        System.out.println("-----------Week-----------");
 
         // System.out.println(locations[6]);
         // for(int i=0;i<10;i++){

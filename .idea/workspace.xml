@@ -7,7 +7,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35cc78d-0629-4113-ad64-dbcac37509c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/e_map.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/events.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/g_map.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/groups.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/l_map.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/loc_mig.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/locations.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/model/phiGZ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/model/phiRV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/model/phiZR" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/model/phiZU" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/model/phiZV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset/meetup-max/u_map.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/e_map.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/e_map.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/g_map.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/g_map.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/groups.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/groups.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/l_map.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/l_map.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/locations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/locations.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/train.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/meetup/u_map.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/meetup/u_map.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RecSys/Dataset$Dump.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RecSys/Dataset$Dump.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RecSys/Dataset.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RecSys/Dataset.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RecSys/RecSys.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RecSys/RecSys.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dataset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dataset.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RecSys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RecSys.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,7 +99,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RecSys">
+  <component name="RunManager" selected="Application.Dataset">
     <configuration name="Dataset" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Dataset" />
       <module name="RecSys" />
@@ -87,13 +116,13 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RecSys" />
         <item itemvalue="Application.Dataset" />
+        <item itemvalue="Application.RecSys" />
       </list>
     </recent_temporary>
   </component>
   <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",SHOW_NON_PUBLIC" />
+    <option name="ACTIVE_ACTIONS" value=",SHOW_NON_PUBLIC,SHOW_FIELDS,SHOW_PROPERTIES" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
