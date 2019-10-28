@@ -881,48 +881,83 @@ public class Dataset {
         doFinalDataset2();
     }
 
+    public static int[][] getLocTime() {
+        int e_num = 20917;
+        int[][] res = new int[e_num][2];
+        File inputFile = new File("dataset/meetup/events.csv");
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(inputFile));
+
+            String line;
+            reader.readLine();
+            while ((line = reader.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[0]);
+                int l_id = Integer.parseInt(tmp[1]);
+                int time = Integer.parseInt(tmp[2]);
+                res[e_id] = new int[]{l_id, time};
+            }
+            return res;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
     private static void doFinalDataset2() {
         Map<Integer, Integer> map = new HashMap<>();
-        File meventFile = new File("dataset/meetup/groups.csv");
-        File memapFile = new File("dataset/meetup/u_map.csv");
-        File meventFile2 = new File("dataset/meetup/groups2.csv");
-        File memapFile2 = new File("dataset/meetup/u_map2.csv");
+        File meventFile = new File("dataset/meetup/events_min.csv");
+        File trainFile = new File("dataset/meetup/train.csv");
+        File testFile = new File("dataset/meetup/test.csv");
+        File mtrainFile = new File("dataset/meetup/train_min.csv");
+        File mtestFile = new File("dataset/meetup/test_min.csv");
         BufferedReader mevent = null;
-        BufferedReader memap = null;
-        BufferedWriter mevent2 = null;
-        BufferedWriter memap2 = null;
+        BufferedReader train = null;
+        BufferedReader test = null;
+        BufferedWriter mtrain = null;
+        BufferedWriter mtest = null;
         String line;
         try {
             mevent = new BufferedReader(new FileReader(meventFile));
-            memap = new BufferedReader(new FileReader(memapFile));
-            mevent2 = new BufferedWriter(new FileWriter(meventFile2));
-            memap2 = new BufferedWriter(new FileWriter(memapFile2));
+            train = new BufferedReader(new FileReader(trainFile));
+            test = new BufferedReader(new FileReader(testFile));
+            mtrain = new BufferedWriter(new FileWriter(mtrainFile));
+            mtest = new BufferedWriter(new FileWriter(mtestFile));
 
             int ind = 0;
-            line = mevent.readLine();
-            mevent2.write(line + "\n");
+            mevent.readLine();
             while ((line = mevent.readLine()) != null) {
                 String[] tmp = line.split(",");
-                int u_id = Integer.parseInt(tmp[1]);
-                if (!map.containsKey(u_id)) {
-                    map.put(u_id, ind++);
-                }
-                mevent2.write(tmp[0] + "," + map.get(u_id) + "\n");
+                int e_id = Integer.parseInt(tmp[0]);
+                map.put(e_id, ind++);
             }
 
-            Integer[] replace = new Integer[map.size()];
-            line = memap.readLine();
-            memap2.write(line + "\n");
-            while ((line = memap.readLine()) != null) {
+            line = train.readLine();
+            mtrain.write(line + "\n");
+            while ((line = train.readLine()) != null) {
                 String[] tmp = line.split(",");
-                int u_id = Integer.parseInt(tmp[0]);
-                if (!map.containsKey(u_id)) continue;
-                replace[map.get(u_id)] = Integer.parseInt(tmp[1]);
-            }
-            for (int i = 0; i < replace.length; i++) {
-                memap2.write(i + "," + replace[i] + "\n");
+                int e_id = Integer.parseInt(tmp[1]);
+                if (!map.containsKey(e_id)) return;
+                mtrain.write(tmp[0] + "," + map.get(e_id) + "\n");
             }
 
+            line = test.readLine();
+            mtest.write(line + "\n");
+            while ((line = test.readLine()) != null) {
+                String[] tmp = line.split(",");
+                int e_id = Integer.parseInt(tmp[1]);
+                if (!map.containsKey(e_id)) return;
+                mtest.write(tmp[0] + "," + map.get(e_id) + "\n");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -933,23 +968,30 @@ public class Dataset {
                     e1.printStackTrace();
                 }
             }
-            if (memap != null) {
+            if (train != null) {
                 try {
-                    memap.close();
+                    train.close();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }
-            if (mevent2 != null) {
+            if (test != null) {
                 try {
-                    mevent2.close();
+                    test.close();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }
-            if (memap2 != null) {
+            if (mtrain != null) {
                 try {
-                    memap2.close();
+                    mtrain.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (mtest != null) {
+                try {
+                    mtest.close();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -1548,18 +1590,19 @@ public class Dataset {
 
     static void saveEvaluation(int topn, int hit, int truth, int recall, int precision) {
         File file = new File("dataset/meetup/evaluation.txt");
+        StringBuilder sb = new StringBuilder();
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(file));
-            writer.write("topn=" + topn + "\n");
-            writer.write("hit=" + hit + "\n");
-            writer.write("pre=" + precision + "\n");
-            writer.write("rec=" + recall + "\n");
-            writer.write("truth=" + truth + "\n");
-            String p = String.format("Precision=%.4f%%\n", 100.0 * hit / precision);
-            String r = String.format("Recall=%.4f%%\n", 100.0 * hit / recall);
-            writer.write(p);
-            writer.write(r);
+            sb.append("topn=").append(topn).append("\n")
+                    .append("hit=").append(hit).append("\n")
+                    .append("pre=").append(precision).append("\n")
+                    .append("rec=").append(recall).append("\n")
+                    .append("truth=").append(truth).append("\n")
+                    .append(String.format("Precision=%.4f%%\n", 100.0 * hit / precision))
+                    .append(String.format("Recall=%.4f%%\n", 100.0 * hit / recall));
+            writer.write(sb.toString());
+            System.out.println(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
