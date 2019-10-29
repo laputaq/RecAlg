@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="RecAlg">
-    <output-path>$PROJECT_DIR$/out/artifacts/RecAlg</output-path>
-    <root id="archive" name="RecAlg.jar" />
-  </artifact>
-</component>
