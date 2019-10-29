@@ -7,10 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35cc78d-0629-4113-ad64-dbcac37509c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/RecSys.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RecAlg.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/RecSys.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RecSys/Dataset.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RecSys/Dataset.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dataset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dataset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Evaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Evaluation.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,14 +76,14 @@
   <component name="RunManager" selected="Application.Dataset">
     <configuration name="Dataset" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Dataset" />
-      <module name="RecSys" />
+      <module name="RecAlg" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="RecSys" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RecSys" />
-      <module name="RecSys" />
+      <module name="RecAlg" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
