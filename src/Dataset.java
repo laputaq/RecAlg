@@ -1504,6 +1504,23 @@ public class Dataset {
         }
     }
 
+    static void saveScores(double[][] scores) {
+        File file = new File("dataset/meetup/scores.txt");
+        StringBuilder sb;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (double[] score : scores) {
+                sb = new StringBuilder();
+                for (int i = 0; i < score.length - 1; i++) {
+                    sb.append(score[i]).append("\t");
+                }
+                sb.append(score[score.length - 1]).append("\n");
+                writer.write(sb.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // 输出某一群组随时间的推移而导致的位置的变化
     static void locationMigration() {
         int group_num = 1134, event_num = 98287;

@@ -199,7 +199,7 @@ public class RecSys {
         return p;
     }
 
-    public Model getModel() {
+    private Model getModel() {
         Model model = new Model();
         model.phiGZ = estParameter(ngz, ngzsum, alpha);
         model.phiZR = estParameter(nzr, nzrsum, eta);
@@ -255,7 +255,7 @@ public class RecSys {
     private int[][] recommend(Model model, int topn) {
         System.out.println("making recommendation...");
         List<Integer> candlist = new ArrayList<>(getCandEvent());
-        double[][] score = new double[G][candlist.size()];
+        double[][] scores = new double[G][candlist.size()];
         int[][] reclist = new int[G][topn];
         double s = 0, sr, su;
         for (int g = 0; g < testset.length; g++) {
@@ -275,17 +275,18 @@ public class RecSys {
                     // System.out.println("sr: " + sr);
                     s *= sr;
                 }
-                score[g][v] += s;
-                // System.out.println(score[g][v]);
+                scores[g][v] += s;
+                // System.out.println(scores[g][v]);
             }
         }
 
         for (int g = 0; g < G; g++) {
-            int[] events = Util.descSort(score[g]);
+            int[] events = Util.descSort(scores[g]);
             for (int v = 0; v < topn; v++) {
                 System.arraycopy(events, 0, reclist[g], 0, topn);
             }
         }
+        Dataset.saveScores(scores);
         Dataset.saveResults(reclist);
         return reclist;
     }
