@@ -1617,7 +1617,8 @@ public class Dataset {
                     .append("rec=").append(recall).append("\n")
                     .append("truth=").append(truth).append("\n")
                     .append(String.format("Precision=%.4f%%\n", 100.0 * hit / precision))
-                    .append(String.format("Recall=%.4f%%\n", 100.0 * hit / recall));
+                    .append(String.format("Recall=%.4f%%\n", 100.0 * hit / recall))
+                    .append(String.format("Accurate=%.4f%%\n", 100.0 * truth / recall));
             writer.write(sb.toString());
             System.out.println(sb.toString());
         } catch (IOException e) {
