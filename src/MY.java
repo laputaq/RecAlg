@@ -13,19 +13,19 @@ public class MY {
     }
 
     private int U, V, G, Z, C, R;
-    private double alpha, beta, eta, eplisilon, gamma, gamma_t, rho, omega, delta;
+    private double alpha, beta, eta, eplisilon, gamma, gamma_t, rho, omega, delta,x;
 
     private int[][] mig;
     private int[] migsum;
-    private int[][] nzv;    //物品i从主题z中提取的次数，不包括第j个用户-物品对
+    private int[][] nzv; // 物品i从主题z中提取的次数，不包括第j个用户-物品对
     private int[] nzvSum;
-    private int[][] ngz;    //主题z被分配给g组的次数，不包括第j个用户-物品对
+    private int[][] ngz; // 主题z被分配给g组的次数，不包括第j个用户-物品对
     private int[] ngzSum;
-    private int[][] nzu;    //用户u从主题z中抽取的次数，不包括第j个用户-物品对
+    private int[][] nzu; // 用户u从主题z中抽取的次数，不包括第j个用户-物品对
     private int[] nzuSum;
-    private int[][] nuv;    //物品i从用户u中提取的次数，不包括第j个用户-物品对
+    private int[][] nuv; // 物品i从用户u中提取的次数，不包括第j个用户-物品对
     private int[] nuvSum;
-    private int[][] nuc;    //开关c从用户u中提取的次数，不包括第j个用户-物品对
+    private int[][] nuc; // 开关c从用户u中提取的次数，不包括第j个用户-物品对
     private int[][] nzr;
     private int[] nzrSum;
     private int[][] nrv;
@@ -40,12 +40,29 @@ public class MY {
     private static String name = "MY";
 
     public static void main(String[] args) {
-        int c = 2, z = 50, r = 50, topn = 10, iterNum = 20;
-        MY com = new MY(c, z, r);
-        com.init();
-        com.setModel(iterNum);
-        int[][] reclist = com.recommend(topn);
-        Evaluation.evaluate(name, com.testset, reclist, topn);
+        int c = 2, z = 50, r = 50, topn = 10, iterNum = 50;
+        MY my = new MY(c, z, r);
+        my.init();
+        my.setModel(iterNum);
+        int[][] reclist = my.recommend(topn);
+        Evaluation.evaluate(name, my.testset, reclist, topn);
+    }
+
+    public static Set<Integer>[] getRecs(int topn) {
+        int c = 2, z = 50, r = 50, iterNum = 50;
+        MY my = new MY(c, z, r);
+        my.init();
+        my.setModel(iterNum);
+        int[][] recs = my.recommend(topn);
+        Set<Integer>[] recList = new Set[Input.g_num];
+        for (int gidx = 0; gidx < Input.g_num; gidx++) {
+            Integer[] tmp = new Integer[recs[gidx].length];
+            for (int i = 0; i < tmp.length; i++) {
+                tmp[i] = recs[gidx][i];
+            }
+            recList[gidx] = new HashSet<>(Arrays.asList(tmp));
+        }
+        return recList;
     }
 
     private int[][] recommend(int topn) {
@@ -61,16 +78,17 @@ public class MY {
                 for (int z = 0; z < Z; z++) {
                     su = 0;
                     for (int u : groups[g]) {
-                        su += model.gz[g][z] * model.zu[z][u] * (model.lambda[u][0] * model.zv[z][v] + (1 - model.lambda[u][0]) * model.uv[u][v]);
+                        su += model.gz[g][z] * model.zu[z][u]
+                                * (model.lambda[u][0] * model.zv[z][v] + (1 - model.lambda[u][0]) * model.uv[u][v]);
                     }
                     s *= su;
                     sr = 0;
                     for (int r = 0; r < R; r++) {
-                        sr += model.zr[z][r] * model.rv[r][v] * 100000;
+                        sr += model.zr[z][r] * model.rv[r][v] * x;
                     }
                     s *= sr;
                 }
-                scores[g][vi] = s* pm(v);
+                scores[g][vi] = s * pm(v);
             }
         }
 
@@ -80,8 +98,9 @@ public class MY {
                 System.arraycopy(events, 0, reclist[g], 0, topn);
             }
         }
-        Dataset.saveScores(name, scores);
-        Dataset.saveResults(name, reclist);
+//        Dataset.saveScores(name, scores);
+//        Dataset.saveResults(name, reclist);
+        Util.getRes(name);
         return reclist;
     }
 
@@ -102,8 +121,8 @@ public class MY {
                         front = front * ((nzv[z][v] + eta) / (nzvSum[z] + V * eta));
                     }
                     for (int r = 0; r < R; r++) {
-                        P[z][r] = (nzr[z][r] + eplisilon) / (nzrSum[z] + R * eplisilon)
-                                * (nrv[r][v] + omega) / (nrvSum[r] + V * omega) * front;
+                        P[z][r] = (nzr[z][r] + eplisilon) / (nzrSum[z] + R * eplisilon) * (nrv[r][v] + omega)
+                                / (nrvSum[r] + V * omega) * front;
                     }
                 }
 
@@ -206,13 +225,13 @@ public class MY {
         model.zr = estParameter(nzr, nzrSum, eplisilon);
         model.rv = estParameter(nrv, nrvSum, omega);
         model.lambda = getLambda();
-        Dataset.saveModelData(model.gz, "gz");
-        Dataset.saveModelData(model.zu, "zu");
-        Dataset.saveModelData(model.uv, "uv");
-        Dataset.saveModelData(model.zv, "zv");
-        Dataset.saveModelData(model.zr, "zr");
-        Dataset.saveModelData(model.rv, "rv");
-        Dataset.saveModelData(model.lambda, "lambda");
+        // Dataset.saveModelData(model.gz, "gz");
+        // Dataset.saveModelData(model.zu, "zu");
+        // Dataset.saveModelData(model.uv, "uv");
+        // Dataset.saveModelData(model.zv, "zv");
+        // Dataset.saveModelData(model.zr, "zr");
+        // Dataset.saveModelData(model.rv, "rv");
+        // Dataset.saveModelData(model.lambda, "lambda");
     }
 
     private double[][] getLambda() {
@@ -272,7 +291,7 @@ public class MY {
         }
     }
 
-    private MY(int c, int z, int r) {
+    public MY(int c, int z, int r) {
         model = new MModel();
         trainset = Dataset.readTrainOrTestOrGroup(Input.trainfile);
         testset = Dataset.readTrainOrTestOrGroup(Input.testfile);
@@ -298,6 +317,7 @@ public class MY {
         eplisilon = 0.2;
         omega = 0.01;
         delta = 0.01;
+        x = 1000;
 
         mig = new int[V][V];
         migsum = new int[V];

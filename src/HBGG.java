@@ -64,12 +64,28 @@ public class HBGG {
 
     public static void main(String[] args) {
         int Z = 50, R = 50, topn = 10, iterNum = 50;
-        HBGG HBGG = new HBGG(Z, R);
-        HBGG.init();
-        HModel model = HBGG.getModel(iterNum);
-        //HModel model = recAlg.readModel();
-        int[][] reclist = HBGG.recommend(model, topn);
-        Evaluation.evaluate(name, HBGG.testset, reclist, topn);
+        HBGG hbgg = new HBGG(Z, R);
+        hbgg.init();
+        HModel model = hbgg.getModel(iterNum);
+        int[][] reclist = hbgg.recommend(model, topn);
+        Evaluation.evaluate(name, hbgg.testset, reclist, topn);
+    }
+
+    public static Set<Integer>[] getRecs(int topn) {
+        int Z = 50, R = 50, iterNum = 50;
+        HBGG hbgg = new HBGG(Z, R);
+        hbgg.init();
+        HModel model = hbgg.getModel(iterNum);
+        int[][] recs = hbgg.recommend(model, topn);
+        Set<Integer>[] recList = new Set[Input.g_num];
+        for (int gidx = 0; gidx < Input.g_num; gidx++) {
+            Integer[] tmp = new Integer[recs[gidx].length];
+            for (int i = 0; i < tmp.length; i++) {
+                tmp[i] = recs[gidx][i];
+            }
+            recList[gidx] = new HashSet<>(Arrays.asList(tmp));
+        }
+        return recList;
     }
 
     private int[][] recommend(HModel model, int topn) {
@@ -104,8 +120,9 @@ public class HBGG {
                 System.arraycopy(events, 0, reclist[g], 0, topn);
             }
         }
-        Dataset.saveScores(name, scores);
-        Dataset.saveResults(name, reclist);
+//        Dataset.saveScores(name, scores);
+//        Dataset.saveResults(name, reclist);
+        Util.getRes(name);
         return reclist;
     }
 

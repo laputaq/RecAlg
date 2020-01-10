@@ -1,9 +1,4 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Dataset {
@@ -22,7 +17,14 @@ public class Dataset {
         }
     }
 
+    class Event {
+        Date sTime;
+        int num;
+    }
+
     static int[] readEventLocation(String fileName) {
+        List<Event> a = new ArrayList<>();
+        a.sort(Comparator.comparing(o -> o.sTime));
         int N = countNum(fileName);
         int[] eventLoc = new int[N];
         File file = new File(fileName);
@@ -220,7 +222,7 @@ public class Dataset {
 
 
     static void saveResults(String name, int[][] arrs) {
-        File file = new File("src/res/" + name + "_reclist.txt");
+        File file = new File("./res/" + name + "_reclist.txt");
         BufferedWriter writer = null;
         StringBuilder sb;
         try {
@@ -247,7 +249,7 @@ public class Dataset {
     }
 
     static void saveScores(String name, double[][] scores) {
-        File file = new File("src/res/" + name + "_scores.txt");
+        File file = new File("./res/" + name + "_scores.txt");
         StringBuilder sb;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (double[] score : scores) {
@@ -264,13 +266,12 @@ public class Dataset {
     }
 
     static void saveEvaluation(String name, int topn, int hit, int sum, double p, double r, double f1) {
-        File file = new File("src/res/" + name + "_evaluation.txt");
+        File file = new File("./res/" + name + "_evaluation.txt");
         StringBuilder sb = new StringBuilder();
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(file));
-            sb.append("topn=").append(topn).append("\n")
-                    .append("hit=").append(hit).append("\n")
+            sb.append("hit=").append(hit).append("\n")
                     .append("sum=").append(sum).append("\n")
                     .append(String.format("Precision=%.4f%%\n", p))
                     .append(String.format("Recall=%.4f%%\n", r))

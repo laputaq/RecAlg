@@ -48,6 +48,23 @@ public class COM {
         Evaluation.evaluate(name, com.testset, reclist, topn);
     }
 
+    public static Set<Integer>[] getRecs(int topn) {
+        int c = 2, z = 50, iterNum = 50;
+        COM com = new COM(c, z);
+        com.init();
+        com.setModel(iterNum);
+        int[][] recs = com.recommend(topn);
+        Set<Integer>[] recList = new Set[Input.g_num];
+        for (int gidx = 0; gidx < Input.g_num; gidx++) {
+            Integer[] tmp = new Integer[recs[gidx].length];
+            for (int i = 0; i < tmp.length; i++) {
+                tmp[i] = recs[gidx][i];
+            }
+            recList[gidx] = new HashSet<>(Arrays.asList(tmp));
+        }
+        return recList;
+    }
+
     private int[][] recommend(int topn) {
         System.out.println("making recommendation...");
         List<Integer> candlist = new ArrayList<>(getCandEvent());
@@ -75,14 +92,9 @@ public class COM {
                 System.arraycopy(events, 0, reclist[g], 0, topn);
             }
         }
-        for (int g = 0; g < Input.g_num; g++) {
-            for (int i = 0; i < topn; i++) {
-                System.out.print(reclist[g][i] + "\t");
-            }
-            System.out.println();
-        }
-        Dataset.saveScores(name, scores);
-        Dataset.saveResults(name, reclist);
+//        Dataset.saveScores(name, scores);
+//        Dataset.saveResults(name, reclist);
+        Util.getRes(name);
         return reclist;
     }
 
