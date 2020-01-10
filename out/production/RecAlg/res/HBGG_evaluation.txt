@@ -1,8 +1,0 @@
-topn=10
-hit=3
-pre=200
-rec=4194
-truth=781
-Precision=1.5000%
-Recall=0.0715%
-Accurate=18.6218%
